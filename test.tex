@@ -1,0 +1,18 @@
+\documentclass{article}
+
+% Simple natbib + apalike setup
+\usepackage[round,authoryear]{natbib}
+\bibliographystyle{apalike}
+
+\begin{document}
+
+\section*{Bibliography Test}
+
+Here’s a citation check: \citep{hicken_building_2009}.
+
+% Force all .bib entries into the References
+\nocite{*}
+
+\bibliography{references}
+
+\end{document}

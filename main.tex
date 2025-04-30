@@ -1,0 +1,153 @@
+% main.tex — Brown University PhD Dissertation
+\documentclass[11pt,oneside]{book}
+
+% =========================
+% XeLaTeX + Unicode Setup
+% =========================
+\usepackage{fontspec}               % load system fonts, full UTF-8 support
+\defaultfontfeatures{Ligatures=TeX} % enable TeX ligatures
+\usepackage{polyglossia}            % multilingual support
+  \setdefaultlanguage{american}     % U.S. English hyphenation
+
+% =========================
+% Essential Packages
+% =========================
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{caption,subcaption}
+\usepackage{float,wrapfig,lscape}
+\usepackage{booktabs,array,multirow,longtable,tabularx,adjustbox}
+\usepackage{tcolorbox}
+\usepackage{diagbox}
+\usepackage{tablefootnote}
+\usepackage{siunitx}
+\usepackage{enumitem}
+\usepackage{textcomp,gensymb}
+\usepackage{tikz}
+  \usetikzlibrary{
+    shapes,arrows,positioning,calc,
+    patterns,decorations.pathreplacing
+  }
+\usepackage{pgfplots,pgfplotstable}
+  \pgfplotsset{compat=1.18}
+\usepackage{setspace}
+\usepackage{datetime}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{geometry}
+\usepackage{import}
+\usepackage{chngcntr}
+\usepackage[hidelinks]{hyperref}
+
+% =========================
+% Custom Dissertation Style
+% =========================
+% (make sure UF_FRED_paper_style.sty is in the project root)
+\usepackage{UF_FRED_paper_style}
+
+% =========================
+% Bibliography: biblatex + Biber
+% =========================
+\usepackage[
+  backend=biber,
+  style=authoryear,
+  bibencoding=utf8,
+  natbib=true        % still allows \citep / \citet
+]{biblatex}
+\addbibresource{references.bib}     % your full Zotero export
+
+% =========================
+% Custom Column Types
+% =========================
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% =========================
+% Margins & Spacing
+% =========================
+\geometry{
+  a4paper,
+  left=0.75in, right=0.75in,
+  top=1in,    bottom=1in
+}
+\onehalfspacing            % 1.5 line spacing
+\setlength{\parindent}{16pt}
+
+% =========================
+% Header Setup
+% =========================
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\setlength{\headheight}{28pt}
+
+% =========================
+% Counter & Numbering
+% =========================
+\setcounter{secnumdepth}{1}      
+\counterwithout{section}{chapter}
+\counterwithout{subsection}{section}
+
+% Uppercase “Chapter” in headings
+\makeatletter
+\renewcommand\@chapapp{%
+  \textls[40]{\MakeUppercase{\chaptername}}}
+\makeatother
+
+% =========================
+% Graphics Path
+% =========================
+\graphicspath{{images/}}
+
+% =========================
+% Title Information
+% =========================
+\title{%
+  {\LARGE TITLE OF DISSERTATION}\\[1ex]
+  {\large By AUTHOR’S NAME}\\[2ex]
+  {\normalsize B.S., Institution, 20XX}\\
+  {\normalsize M.S., Institution, 20XX}\\[2ex]
+  {\large A Dissertation}\\
+  {\large Submitted in partial fulfillment of the requirements}\\
+  {\large for the Degree of Doctor of Philosophy}\\
+  {\large in the Department of (DEPARTMENT) at Brown University}
+}
+\author{PROVIDENCE, RHODE ISLAND}
+\date{May 20XX}
+
+% =========================
+\begin{document}
+\maketitle
+
+% -------------------------
+% Front Matter
+% -------------------------
+\frontmatter
+\include{frontmatter/ii_copyright_page}
+\addtocounter{page}{1}
+\include{frontmatter/iii_signature_page}
+\include{frontmatter/iv_curriculum_vitae}
+\include{frontmatter/v_preface_and_acknowledgements}
+\include{frontmatter/vi_table_of_contents}
+\include{frontmatter/vii_list_of_tables_figures}
+
+% -------------------------
+% Main Matter
+% -------------------------
+\mainmatter
+\include{chapters/01_chapter}
+\include{chapters/02_chapter}
+\include{chapters/03_chapter}
+\include{chapters/04_chapter}
+\include{chapters/05_chapter}
+
+% -------------------------
+% Back Matter
+% -------------------------
+\backmatter
+
+% Print the full bibliography
+\printbibliography
+
+\end{document}
